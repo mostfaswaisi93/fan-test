@@ -1,0 +1,391 @@
+@extends('layout.master')
+
+
+@section('sidebar')
+
+
+
+
+
+    <ul class="sidemenu  page-header-fixed" data-keep-expanded="false" data-auto-scroll="true"
+        data-slide-speed="200" style="padding-top: 20px">
+        <li class="sidebar-toggler-wrapper hide">
+            <div class="sidebar-toggler">
+                <span></span>
+            </div>
+        </li>
+        <li class="sidebar-user-panel">
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="{{asset("plugin/img/dp.svg")}}"
+                         class="{{asset("plugin/img-circle user-img-circle")}}" alt="User Image"/>
+                </div>
+                <div class="pull-left info">
+                    <p>{{ config('app.name', 'Laravel') }}</p>
+                    <a href="{{url('home')}}"><i class="fa fa-circle user-online"></i><span
+                            class="txtOnline"> Online</span></a>
+                </div>
+            </div>
+        </li>
+        <li class="nav-item start active open">
+            <a class="nav-link " href="{{url('home')}}"> <i class="fa fa-tachometer"></i> <span
+                    class="title">Dashboard</span>
+            </a>
+        </li>
+        <li class="nav-item  ">
+            <a href="#" class="nav-link nav-toggle"><i class="fa fa-book"></i>
+                <span class="title">Appointment</span><span class="arrow"></span></a>
+            <ul class="sub-menu">
+                <li class="nav-item  ">
+                    <a href="{{url('schedule')}}" class="nav-link "> <span
+                            class="title">Doctor Schedule</span>
+                    </a>
+                </li>
+                <li class="nav-item  ">
+                    <a href="{{route('appointment.create')}}" class="nav-link "> <span class="title">Book Appointment</span>
+                    </a>
+                </li>
+                <li class="nav-item  ">
+                    <a href="{{route('appointment.index')}}" class="nav-link "> <span class="title">View All Appointment</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="nav-item  ">
+            <a href="#" class="nav-link nav-toggle"><i class="fa fa-book"></i>
+                <span class="title">Users</span><span class="arrow"></span></a>
+            <ul class="sub-menu">
+                <li class="nav-item  ">
+                    <a href="{{route('user.create')}}" class="nav-link "> <span
+                            class="title">New User</span>
+                    </a>
+                </li>
+
+                <li class="nav-item  ">
+                    <a href="{{route('user.index')}}" class="nav-link "> <span
+                            class="title">All User</span>
+                    </a>
+                </li>
+
+            </ul>
+        </li>
+        <li class="nav-item  ">
+            <a href="#" class="nav-link nav-toggle"> <i class="fa fa-user-md"></i>
+
+                <span class="title">Doctors</span> <span class="arrow"></span>
+            </a>
+            <ul class="sub-menu">
+                <li class="nav-item  ">
+                    <a href="{{route('doctor.index')}}"> <span class="title">All Doctor</span>
+                    </a>
+                </li>
+                <li class="nav-item  ">
+                    <a href="{{route('doctor.create')}}" class="nav-link "> <span class="title">Add Doctor</span>
+                    </a>
+                </li>
+                <li class="nav-item  ">
+                    <a href="#" class="nav-link "> <span class="title">Edit Doctor</span>
+                    </a>
+                </li>
+                <li class="nav-item  ">
+                    <a href="#" class="nav-link "> <span
+                            class="title">About Doctor</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-item  ">
+            <a href="#" class="nav-link nav-toggle"> <i class="fa fa-user"></i>
+                <span class="title">Patients</span> <span class="arrow"></span>
+            </a>
+            <ul class="sub-menu">
+                <li class="nav-item  ">
+                    <a href="{{route('patient.index')}}" class="nav-link "> <span
+                            class="title">All Patients</span>
+                    </a>
+                </li>
+                <li class="nav-item  ">
+                    <a href="{{route('patient.create')}}" class="nav-link "> <span class="title">Add Patient</span>
+                    </a>
+                </li>
+                <li class="nav-item  ">
+                    <a href="#" class="nav-link "> <span
+                            class="title">Edit Patient</span>
+                    </a>
+                </li>
+                <li class="nav-item  ">
+                    <a href="#" class="nav-link "> <span class="title">Patient Profile</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-item  ">
+            <a href="#" class="nav-link nav-toggle"> <i class="fa fa-users"></i>
+                <span class="title">Other Staff</span> <span class="arrow"></span>
+            </a>
+            <ul class="sub-menu">
+                <li class="nav-item  ">
+                    <a href="{{route('employee.index')}}" class="nav-link "> <span class="title">All Staff</span>
+                    </a>
+                </li>
+                <li class="nav-item  ">
+                    <a href="{{route('employee.create')}}" class="nav-link ">
+                        <span class="title">Add Staff</span>
+                    </a>
+                </li>
+                <li class="nav-item  ">
+                    <a href="#" class="nav-link "> <span class="title">Edit Staff</span>
+                    </a>
+                </li>
+                <li class="nav-item  ">
+                    <a href="#" class="nav-link "> <span
+                            class="title">Staff Profile</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="nav-item  ">
+            <a href="#" class="nav-link nav-toggle"> <i class="fa fa-plus-square"></i>
+
+                <span class="title">Operation</span> <span class="arrow"></span>
+            </a>
+            <ul class="sub-menu">
+                <li class="nav-item  ">
+                    <a href="{{route('operation.index')}}"> <span class="title">All Operation</span>
+                    </a>
+                </li>
+                <li class="nav-item  ">
+                    <a href="{{route('operation.create')}}" class="nav-link "> <span class="title">Add Operation</span>
+                    </a>
+                </li>
+                <li class="nav-item  ">
+                    <a href="#" class="nav-link "> <span class="title">Edit Eperation</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-item  ">
+            <a href="#" class="nav-link nav-toggle"> <i class="fa fa-medkit custom"></i>
+
+                <span class="title">Prescription</span> <span class="arrow"></span>
+            </a>
+            <ul class="sub-menu">
+                <li class="nav-item  ">
+                    <a href="{{route('prescription.index')}}"> <span
+                            class="title">All Prescription</span>
+                    </a>
+                </li>
+                <li class="nav-item  ">
+                    <a href="{{route('prescription.create')}}" class="nav-link "> <span class="title">Add Prescription</span>
+                    </a>
+                </li>
+
+            </ul>
+        </li>
+        <li class="nav-item  ">
+            <a href="#" class="nav-link nav-toggle"> <i class="fa fa-money"></i>
+                <span class="title">Payments</span> <span class="arrow"></span>
+            </a>
+            <ul class="sub-menu">
+                <li class="nav-item  ">
+                    <a href="{{route('payment.create')}}" class="nav-link "> <span
+                            class="title">Add Payments</span>
+                    </a>
+                </li>
+                <li class="nav-item  ">
+                    <a href="{{route('payment.index')}}" class="nav-link "> <span
+                            class="title">Payments</span>
+                    </a>
+                </li>
+
+                <li class="nav-item  ">
+                    <a href="" class="nav-link "> <span class="title">Patient Invoice</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+    </ul>
+
+@endsection
+
+
+
+
+
+
+@section('content')
+
+    <div class="row">
+        <div class="page-bar">
+            <div class="page-title-breadcrumb">
+                <div class=" pull-left">
+                    <div class="page-title">New Register
+                    </div>
+                </div>
+                <ol class="breadcrumb page-breadcrumb pull-right">
+                    <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="master">Home</a>&nbsp;<i
+                            class="fa fa-angle-right"></i>
+                    </li>
+
+
+                </ol>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="tabbable-line">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#tab1" data-toggle="tab"> List View </a>
+                    </li>
+
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active fontawesome-demo" id="tab1">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card card-topline-red">
+                                    <div class="card-head">
+                                        <header></header>
+                                        <div class="tools">
+                                            <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
+                                            <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;"></a>
+                                            <a class="t-close btn-color fa fa-times" href="javascript:;"></a>
+                                        </div>
+                                    </div>
+                                    <div class="card-body ">
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                                <div class="btn-group">
+
+                                                    <div class="col">
+
+                                                    </div>
+
+
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                                <div class="btn-group pull-right">
+                                                    <button class="btn green-bgcolor  btn-outline dropdown-toggle"
+                                                            data-toggle="dropdown">Tools
+                                                        <i class="fa fa-angle-down"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu pull-right">
+                                                        <li>
+                                                            <a href="javascript:;">
+                                                                <i class="fa fa-print"></i> Print </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="javascript:;">
+                                                                <i class="fa fa-file-pdf-o"></i> Save as PDF </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="javascript:;">
+                                                                <i class="fa fa-file-excel-o"></i> Export to Excel </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                {{--<div  class="card-header" >{{ __('Register') }}</div>--}}
+
+                <div class="card-body">
+                    <form method="POST" action="{{ route('user.store') }}">
+                        @csrf
+
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="role_id" class="col-md-4 col-form-label text-md-right">{{ __('role_id') }}</label>
+
+                            <div class="col-md-6">
+                                <select id="role_id"  class="form-control @error('role_id') is-invalid @enderror" name="role_id" value="{{ old('role_id') }}" required autocomplete="role_id">
+                                    <option value="-1">Select Type</option>
+                                    <option value="1">Admin</option>
+                                    <option value="2">Doctor</option>
+                                    <option value="3">Secrter</option>
+                                </select>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group row">
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Register') }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@endsection
