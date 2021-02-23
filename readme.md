@@ -1,1 +1,1 @@
-﻿# Laravel - Laravel - Fan-Test
+﻿# Laravel - Fan-Test
