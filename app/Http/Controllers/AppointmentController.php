@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use GuzzleHttp\Client;
 use App\Appointment;
 use App\Doctor;
@@ -17,13 +18,11 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-        $appointment = Appointment::with('doctors','patients')->get();
+        $appointment = Appointment::with('doctors', 'patients')->get();
 
-       $appointment = Appointment::all()->count();
-//        dd($appointment);
+        $appointment = Appointment::all()->count();
+        //        dd($appointment);
         return view('admin.appointment.indexAppointment', compact('appointment'));
-
-
     }
 
     /**
@@ -38,7 +37,6 @@ class AppointmentController extends Controller
 
 
         return view('admin.appointment.createAppointment', compact('patients', 'doctors'));
-
     }
 
     /**
@@ -73,11 +71,12 @@ class AppointmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    { $patients = Patient::all();
+    {
+        $patients = Patient::all();
         $doctor = Doctor::all();
 
         $appointment = Appointment::find($id);
-        return view('admin.appointment.editAppointment', compact('appointment','patients','doctor'));
+        return view('admin.appointment.editAppointment', compact('appointment', 'patients', 'doctor'));
     }
 
     /**
@@ -105,18 +104,14 @@ class AppointmentController extends Controller
      * @param  \App\Appointment $appointment
      * @return \Illuminate\Http\Response
      */
-       public function destroy(Appointment $appointment)
+    public function destroy(Appointment $appointment)
     {
         $appointment->delete();
         return redirect('/appointment')->with('success', 'The Appointment Has Been Remove');
     }
 
-    public function schedule( )
+    public function schedule()
     {
         return view('admin.appointment.appointDoctor');
-
-
     }
-
-
 }

@@ -3,19 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 const API_KEY = "YOUR API KEY HERE";
 const API_URL = "https://api.cloudways.com/api/v1";
 const EMAIL = "YOUR EMAIL GOES HERE";
 
 class DeployController extends Controller
 {
-    public function deploy(){
+    public function deploy()
+    {
 
         /* examples
         const BranchName = "master";
         const GitUrl = "git@bitbucket.org:user22/repo_name.git";
         */
-//Use this function to contact CW API
+        //Use this function to contact CW API
         function callCloudwaysAPI($method, $url, $accessToken, $post = [])
         {
             $baseURL = API_URL;
@@ -46,12 +48,16 @@ class DeployController extends Controller
             curl_close($ch);
             return json_decode($output);
         }
-//Fetch Access Token
-        $tokenResponse = callCloudwaysAPI('POST', '/oauth/access_token', null
-            , [
+        //Fetch Access Token
+        $tokenResponse = callCloudwaysAPI(
+            'POST',
+            '/oauth/access_token',
+            null,
+            [
                 'email' => EMAIL,
                 'api_key' => API_KEY
-            ]);
+            ]
+        );
         $accessToken = $tokenResponse->access_token;
         $gitPullResponse = callCloudWaysAPI('POST', '/git/pull', $accessToken, [
             'server_id' => $_GET['server_id'],

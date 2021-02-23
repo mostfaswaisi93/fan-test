@@ -12,6 +12,5 @@ class OperatienSeeder extends Seeder
     public function run()
     {
         factory(App\Operation::class, 5)->create();
-
     }
 }

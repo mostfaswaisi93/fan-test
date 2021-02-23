@@ -32,6 +32,4 @@ class UsersSeeder extends Seeder
             'password' => bcrypt('123456789'),
         ]);
     }
-
-
 }

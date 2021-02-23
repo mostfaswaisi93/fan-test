@@ -22,7 +22,5 @@ class RoleSeeder extends Seeder
         DB::table('Roles')->insert([
             'type' => 'secretary',
         ]);
-
-
     }
 }

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Doctor extends Model
 {
-    protected $fillable=[
+    protected $fillable = [
         'name',
         'surname',
         'user_id',

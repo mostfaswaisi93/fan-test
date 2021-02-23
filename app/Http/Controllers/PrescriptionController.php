@@ -16,7 +16,7 @@ class PrescriptionController extends Controller
      */
     public function index()
     {
-        $prescription = Prescription::with('doctors','patients')->get();
+        $prescription = Prescription::with('doctors', 'patients')->get();
 
         return view('admin.prescription.indexPrescription', compact('prescription'));
     }
@@ -82,15 +82,15 @@ class PrescriptionController extends Controller
     public function update(Request $request, $id)
     {
         $prescription = Prescription::find($id);
-//        $patient = Patient::all();
-//        $doctor = Doctor::all();
-//        $allpatient = $patient->where('parent', 0);
-//        $alldoctor = $doctor->where('parent', 0);
+        //        $patient = Patient::all();
+        //        $doctor = Doctor::all();
+        //        $allpatient = $patient->where('parent', 0);
+        //        $alldoctor = $doctor->where('parent', 0);
 
-//        $appointment->patient_id = $request->get('name');
-//        $appointment->doctor_id = $request->get('name');
-//        $appointment->name = $request->get('patient_id');
-//        $appointment->name = $request->get('doctor_id');
+        //        $appointment->patient_id = $request->get('name');
+        //        $appointment->doctor_id = $request->get('name');
+        //        $appointment->name = $request->get('patient_id');
+        //        $appointment->name = $request->get('doctor_id');
         $prescription->type_of_prescription = $request->get('type_of_prescription');
         $prescription->details = $request->get('details');
         $prescription->date_of_prescription = $request->get('date_of_prescription');

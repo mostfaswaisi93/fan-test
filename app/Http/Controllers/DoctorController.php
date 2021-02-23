@@ -33,7 +33,7 @@ class DoctorController extends Controller
         $user = User::all();
         $allUser = $user->where('parent', 0);
 
-        return view('admin.doctor.createDoctor',compact('allUser'));
+        return view('admin.doctor.createDoctor', compact('allUser'));
     }
 
     /**
@@ -49,11 +49,10 @@ class DoctorController extends Controller
 
         $doctor = Doctor::create($request->all());
 
-        if($request->hasFile('photo'))
-        {
+        if ($request->hasFile('photo')) {
             $photo = $request->file('photo');
             $photo->store('doctors');
-            $doctor->photo='doctors/'.$photo->hashName();
+            $doctor->photo = 'doctors/' . $photo->hashName();
         }
         $doctor->save();
         return redirect('/doctor')->with('success', 'The Doctor has been added');

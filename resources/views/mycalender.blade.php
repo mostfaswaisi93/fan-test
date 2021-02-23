@@ -12,36 +12,36 @@
 
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css" />
 
 </head>
 
 <body>
-<br>
-<div class="container">
-    <div class="row">
-        <a href="/addeventurl" class="btn btn-success">Add Event</a>
-    </div>
     <br>
-    <div class="panel panel-primary">
-
-        <div class="panel-heading">
-
-            MY Calender
-
+    <div class="container">
+        <div class="row">
+            <a href="/addeventurl" class="btn btn-success">Add Event</a>
         </div>
+        <br>
+        <div class="panel panel-primary">
 
-        <div class="panel-body" >
+            <div class="panel-heading">
 
-            {!! $calendar->calendar() !!}
+                MY Calender
 
-            {!! $calendar->script() !!}
+            </div>
+
+            <div class="panel-body">
+
+                {!! $calendar->calendar() !!}
+
+                {!! $calendar->script() !!}
+
+            </div>
 
         </div>
 
     </div>
-
-</div>
 
 </body>
 

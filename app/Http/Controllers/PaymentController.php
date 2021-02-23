@@ -20,9 +20,8 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        $payment =Payment::with('doctors','patients')->get();
-        return view('admin.payment.indexPayment',compact('payment'));
-
+        $payment = Payment::with('doctors', 'patients')->get();
+        return view('admin.payment.indexPayment', compact('payment'));
     }
 
     /**
@@ -34,9 +33,9 @@ class PaymentController extends Controller
     {
         $patient = Patient::all();
         $doctor = Doctor::all();
-         $allpatient = $patient->where('parent', 0);
+        $allpatient = $patient->where('parent', 0);
         $alldoctor = $doctor->where('parent', 0);
-        return view('admin.payment.createPayment',compact('allpatient','alldoctor'));
+        return view('admin.payment.createPayment', compact('allpatient', 'alldoctor'));
     }
 
     /**
@@ -48,13 +47,12 @@ class PaymentController extends Controller
     public function store(Request $request)
     {
 
-        $request['remaining_Amount'] = $request['total_Amount']-$request['first_Amount'];
-        $payment= Payment::create($request->all());
+        $request['remaining_Amount'] = $request['total_Amount'] - $request['first_Amount'];
+        $payment = Payment::create($request->all());
         $payment->save();
         $request['pay'] = $request['first_Amount'];
         Pays::create($request->all());
         return redirect('/payment')->with('success', 'The Payment has been added');
-
     }
 
     /**
@@ -65,9 +63,8 @@ class PaymentController extends Controller
      */
     public function show($id)
     {
-        $payment =Payment::find($id);
-        return view('admin.payment.ShowPayment',compact('payment'));
-
+        $payment = Payment::find($id);
+        return view('admin.payment.ShowPayment', compact('payment'));
     }
 
     /**
@@ -90,12 +87,12 @@ class PaymentController extends Controller
      * @param  \App\Payment  $payment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
         $payment = Payment::find($id);
         $old = $payment->first_Amount;
         $payment->first_Amount = $request->get('first_Amount') + $old;
-        $payment->remaining_Amount= ($payment->total_Amount - $payment->first_Amount);
+        $payment->remaining_Amount = ($payment->total_Amount - $payment->first_Amount);
         $payment->save();
         return redirect('/payment')->with('success', 'The Payment Has Been add');
     }
@@ -112,15 +109,15 @@ class PaymentController extends Controller
         return redirect('/payment')->with('success', 'The Payment has been Remove');
     }
 
-//    protected function addPayment(Request $request,$id)
-//    {
-//        $payment = Payment::find($id);
-//        $old = $payment->first_Amount;
-//        $payment->first_Amount = $request->get('first_Amount') + $old;
-//        $payment->remaining_Amount= ($payment->total_Amount - $payment->first_Amount);
-//        $payment->save();
-//        return redirect('/payment')->with('success', 'The Payment Has Been Update');
-//    }
+    //    protected function addPayment(Request $request,$id)
+    //    {
+    //        $payment = Payment::find($id);
+    //        $old = $payment->first_Amount;
+    //        $payment->first_Amount = $request->get('first_Amount') + $old;
+    //        $payment->remaining_Amount= ($payment->total_Amount - $payment->first_Amount);
+    //        $payment->save();
+    //        return redirect('/payment')->with('success', 'The Payment Has Been Update');
+    //    }
 
 
 }

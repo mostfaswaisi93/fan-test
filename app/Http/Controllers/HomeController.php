@@ -14,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-          $this->middleware('auth');
+        $this->middleware('auth');
     }
 
     /**
@@ -24,20 +24,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if (Auth::user()->role_id == 1){
+        if (Auth::user()->role_id == 1) {
             return redirect('user');
-
-
-        }
-        elseif(Auth::user()->role_id == 2)
-        {
+        } elseif (Auth::user()->role_id == 2) {
             return redirect('patient');
-        }
-        elseif(Auth::user()->role_id == 3)
-        {
+        } elseif (Auth::user()->role_id == 3) {
             return redirect('payment');
-        }
-        else{
+        } else {
             return redirect('login');
         }
     }

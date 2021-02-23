@@ -21,6 +21,6 @@ $factory->define(Operation::class, function (Faker $faker) {
         },
         'type_operate' => $faker->name,
         'date_of_operate' => $faker->date($format = 'Y-m-d', $max = 'now'),
-        'photo_teeth'=>$faker->image('storage/app/doctors',60,60),
+        'photo_teeth' => $faker->image('storage/app/doctors', 60, 60),
     ];
 });

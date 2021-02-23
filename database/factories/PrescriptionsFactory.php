@@ -16,7 +16,7 @@ $factory->define(\App\Prescription::class, function (Faker $faker) {
         },
         'type_of_prescription' => $faker->name,
         'date_of_prescription' => $faker->date($format = 'Y-m-d', $max = 'now'),
-        'details'=>$faker->text,
+        'details' => $faker->text,
 
 
     ];

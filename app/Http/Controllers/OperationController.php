@@ -17,7 +17,7 @@ class OperationController extends Controller
     public function index()
     {
 
-        $operation = Operation::with('doctors','patients')->get();
+        $operation = Operation::with('doctors', 'patients')->get();
 
         return view('admin.operation.indexOperation', compact('operation'));
     }
@@ -35,7 +35,7 @@ class OperationController extends Controller
         $alldoctor = $doctor->where('parent', 0);
 
         return view('admin.operation.createOperation', compact('allpatient', 'alldoctor'));
-       // return view('admin.operation.createOperation');
+        // return view('admin.operation.createOperation');
     }
 
     /**
@@ -48,11 +48,10 @@ class OperationController extends Controller
     {
         $operation = Operation::create($request->all());
 
-        if($request->hasFile('photo_teeth'))
-        {
+        if ($request->hasFile('photo_teeth')) {
             $photo = $request->file('photo_teeth');
             $photo->store('operations');
-            $operation->photo_teeth='operations/'.$photo->hashName();
+            $operation->photo_teeth = 'operations/' . $photo->hashName();
         }
         $operation->save();
         return redirect('/operation')->with('success', 'The Operation has been added');
@@ -90,11 +89,11 @@ class OperationController extends Controller
      * @param  \App\operation  $operation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, operation $operation ,$id)
+    public function update(Request $request, operation $operation, $id)
     {
         $operation = Operation::find($id);
-//        $operation->name = $request->get('name');
-//        $operation->aderss = $request->get('aderss');
+        //        $operation->name = $request->get('name');
+        //        $operation->aderss = $request->get('aderss');
         $operation->photo_teeth = $request->get('photo_teeth');
         $operation->type_operate = $request->get('type_operate');
         $operation->date_of_operate = $request->get('date_of_operate');

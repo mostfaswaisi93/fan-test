@@ -24,7 +24,7 @@ class PatientController extends Controller
 
         $patient = Patient::all();
 
-//        $doctor = Doctor::all();
+        //        $doctor = Doctor::all();
 
         return view('admin.patient.indexPatient', compact('patient'));
     }
@@ -39,12 +39,6 @@ class PatientController extends Controller
         return view('admin.patient.createPatient');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
 
@@ -52,15 +46,8 @@ class PatientController extends Controller
 
         $patient->save();
         return redirect('/patient')->with('success', 'The Patient has been added');
-
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Patient $patient
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $patient = Patient::find($id);
@@ -68,12 +55,6 @@ class PatientController extends Controller
         return view('admin.patient.showPatient', compact('patient'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Patient $patient
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $patient = Patient::find($id);
@@ -81,13 +62,6 @@ class PatientController extends Controller
         return view('admin.patient.editPatient', compact('patient'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \App\Patient $patient
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $patient = Patient::find($id);
@@ -102,22 +76,14 @@ class PatientController extends Controller
         return redirect('/patient')->with('success', 'The Patient has been Update');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Patient $patient
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Patient $patient)
     {
         $patient->delete();
         return redirect('/patient')->with('success', 'The Patient has been Remove');
     }
 
-
     public function getPatient(Request $request)
     {
-
         if ($request->ajax()) {
             $patient = Patient::all();
 
@@ -129,9 +95,5 @@ class PatientController extends Controller
                 })
                 ->toJson();
         }
-
-
     }
-
-
 }

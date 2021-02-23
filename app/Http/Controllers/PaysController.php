@@ -15,8 +15,7 @@ class PaysController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-    }
+    { }
 
     /**
      * Show the form for creating a new resource.
@@ -24,10 +23,7 @@ class PaysController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-
-
-    }
+    { }
 
     /**
      * Store a newly created resource in storage.
@@ -35,10 +31,8 @@ class PaysController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,$id)
-    {
-
-    }
+    public function store(Request $request, $id)
+    { }
 
     /**
      * Display the specified resource.
@@ -48,8 +42,8 @@ class PaysController extends Controller
      */
     public function show($id)
     {
-        $pays =Pays::where('patient_id',$id)->get();
-        return view('admin.pays.indexPays',compact('pays'));
+        $pays = Pays::where('patient_id', $id)->get();
+        return view('admin.pays.indexPays', compact('pays'));
     }
 
     /**
@@ -89,25 +83,23 @@ class PaysController extends Controller
 
     protected function createPayment($id)
     {
-        $payment=$id;
+        $payment = $id;
         return view('admin.pays.createPays', compact('payment'));
     }
 
-    protected function storePayment(Request $request ,$id)
+    protected function storePayment(Request $request, $id)
     {
         $request['patient_id'] = $id;
         $payment = Payment::where('patient_id', $id)->first();
-        if ($request->pay <= $payment->remaining_Amount){
+        if ($request->pay <= $payment->remaining_Amount) {
             Pays::create($request->all());
             $payment->first_Amount = $payment->first_Amount + $request['pay'];
             $payment->remaining_Amount = $payment->total_Amount - $payment->first_Amount;
             $payment->save();
 
             return redirect('payment')->with('success', 'The Payment has been Add');
-        }else{
+        } else {
             return redirect('payment')->with('error', 'The Payment has been Error');
         }
-
     }
-
 }

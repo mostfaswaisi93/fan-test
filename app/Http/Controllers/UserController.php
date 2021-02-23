@@ -28,7 +28,7 @@ class UserController extends Controller
         $payment = Payment::where('total_Amount')->count();
 
 
-        return view('app.admin.DashbordAdmin',compact('user','patient','appointment','payment'));
+        return view('app.admin.DashbordAdmin', compact('user', 'patient', 'appointment', 'payment'));
     }
 
     /**
@@ -38,8 +38,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles= Role::all();
-        return view('auth.register',compact('roles'));
+        $roles = Role::all();
+        return view('auth.register', compact('roles'));
     }
 
     /**
@@ -50,10 +50,9 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $request['password']=Hash::make($request['password']);
+        $request['password'] = Hash::make($request['password']);
         User::create($request->all());
         return redirect('/doctor');
-
     }
 
     /**
